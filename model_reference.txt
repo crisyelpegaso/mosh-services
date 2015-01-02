@@ -1,0 +1,25 @@
+************************
+Model Reference
+************************
+
+Artist
+-name
+-country
+-startDate
+-soloist (boolean)
+-artistsRelated (List of Artist)
+
+Location
+-Address
+-Name
+-Type (ENUM)
+
+LocationType (ENUM)
+-STADIUM
+-THEATER
+
+
+CONCERT
+-Artist
+-Date
+-Location
