@@ -27,15 +27,15 @@ public class Artist {
 	
 	private Boolean isSoloist;
 	
+//	@OneToMany(mappedBy="id",cascade=CascadeType.ALL)
+//	private List<Artist> artistsRelated;
+	
 	public Artist(String name, String country, LocalDate startDate, Boolean isSoloist){
 		this.setName(name);
 		this.setCountry(country);
 		this.setStartDate(startDate);
 		this.setSoloist(isSoloist);
 	}
-	
-	@OneToMany(mappedBy="artist",cascade=CascadeType.ALL)
-	private List<Artist> artistsRelated;
 	
 	public String getName() {
 		return name;
@@ -61,14 +61,11 @@ public class Artist {
 	public void setSoloist(boolean isSoloist) {
 		this.isSoloist = isSoloist;
 	}
-	public List<Artist> getArtistsRelated() {
-		return artistsRelated;
-	}
-	public void setArtistsRelated(List<Artist> artistsRelated) {
-		this.artistsRelated = artistsRelated;
-	}
+//	public List<Artist> getArtistsRelated() {
+//		return artistsRelated;
+//	}
+//	public void setArtistsRelated(List<Artist> artistsRelated) {
+//		this.artistsRelated = artistsRelated;
+//	}
 	
-	
-	
-
 }
