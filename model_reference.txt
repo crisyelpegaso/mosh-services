@@ -5,9 +5,9 @@ Model Reference
 Artist
 -name
 -country
--startDate
+-startDate 
 -soloist (boolean)
--artistsRelated (List of Artist)
+-artistsRelated (List of Artist - @ManyToMany) 
 
 Location
 -Address
@@ -20,6 +20,6 @@ LocationType (ENUM)
 
 
 CONCERT
--Artist
--Date
--Location
+-Artists (List of artists - @OneToMany)
+-Date (Can be NULL - Concert to be confirmed)
+-Location (Can be NULL - To be confirmed)
