@@ -39,7 +39,7 @@ public class Artist {
 	@NotNull
 	private LocalDateTime startDate;
 	
-	private Boolean isSoloist;
+	private boolean isSoloist;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@NotEmpty

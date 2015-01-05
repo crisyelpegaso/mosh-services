@@ -2,28 +2,38 @@ package org.mosh.hibernate.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+import org.mosh.exception.PersistenceException;
 
 public class HibernateUtil {
 
-	 private static final SessionFactory sessionFactory = buildSessionFactory();
-	  
-	    private static SessionFactory buildSessionFactory() {
-	        try {
-	            // Create the SessionFactory from hibernate.cfg.xml
-	            return new Configuration().configure().buildSessionFactory();
-	        } catch (Throwable ex) {
-	            // Make sure you log the exception, as it might be swallowed
-	            System.err.println("Initial SessionFactory creation failed." + ex);
-	            throw new ExceptionInInitializerError(ex);
-	        }
-	    }
-	  
-	    public static SessionFactory getSessionFactory() {
-	        return sessionFactory;
-	    }
-	  
-	    public static void shutdown() {
-	        // Close caches and connection pools
-	        getSessionFactory().close();
-	    }
+	private static SessionFactory sessionFactory;
+	private static ServiceRegistry serviceRegistry;
+
+	@SuppressWarnings("unused")
+	private static SessionFactory buildSessionFactory() {
+		try {
+			Configuration configuration = new Configuration();
+			configuration.configure();
+			serviceRegistry = new ServiceRegistryBuilder().applySettings(
+					configuration.getProperties()).buildServiceRegistry();
+			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+			return sessionFactory;
+		} catch (Throwable ex) {
+			throw new PersistenceException("Creating session factory failed");
+		}
+	}
+
+	public static SessionFactory getSessionFactory() {
+		if(sessionFactory == null) {
+			return buildSessionFactory();
+		}
+		return sessionFactory;
+	}
+
+	public static void shutdown() {
+		// Close caches and connection pools
+		getSessionFactory().close();
+	}
 }

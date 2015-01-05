@@ -4,27 +4,42 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.joda.time.LocalDateTime;
 import org.junit.Test;
-import org.mosh.hibernate.util.HibernateUtil;
+import org.junit.runner.RunWith;
 import org.mosh.model.entity.Artist;
 import org.mosh.model.entity.Concert;
 import org.mosh.model.entity.Location;
+import org.mosh.model.entity.repository.ArtistRepository;
+import org.mosh.model.entity.repository.ConcertRepository;
+import org.mosh.model.entity.repository.LocationRepository;
 import org.mosh.model.enums.CountryEnum;
 import org.mosh.model.enums.LocationTypeEnum;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.common.collect.Lists;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:/PersistenceTest-context.xml")
 public class PersistenceTest {
 
+	@Autowired
+	ArtistRepository artistRepository;
+	
+	@Autowired
+	LocationRepository locationRepository;
+	
+	@Autowired
+	ConcertRepository concertRepository;
+	
 	@Test
 	public void testSessionSave() {
 		
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
+//		Session session = HibernateUtil.getSessionFactory().openSession();
+//		session.beginTransaction();
 
 		// Create main artists
 		Artist am = new Artist("ArcticMonkeys", CountryEnum.ENGLAND, new LocalDateTime(), false);
@@ -38,16 +53,16 @@ public class PersistenceTest {
 		artistsRelatedTo.add(am);
 		
 		kasabian.setArtistsRelated(artistsRelatedTo);
-		session.save(kasabian);
+		artistRepository.save(kasabian);
 		spoon.setArtistsRelated(artistsRelatedTo);
-		session.save(spoon);
+		artistRepository.save(spoon);
 		
 		// Create AM Concert
 		Location location = new Location();
 		location.setCity("Buenos Aires");
 		location.setCountry(CountryEnum.ARGENTINA);
 		location.setType(LocationTypeEnum.STADIUM);
-		session.save(location);
+		locationRepository.save(location);
 		
 		Concert concert = new Concert();
 		List<Artist> artistsPlaying = Lists.newArrayList();
@@ -64,14 +79,15 @@ public class PersistenceTest {
 		am.setArtistsRelated(artists);
 		
 		// Save modified objects
-		session.save(am);
-		session.save(concert);
-		session.getTransaction().commit();
+		artistRepository.save(am);
+		concertRepository.save(concert);
+//		session.getTransaction().commit();
 
 		// Retrieve am concert
-		Query q = session.createQuery("From Concert");
+//		Query q = session.createQuery("From Concert");
 
-		List<Concert> concerts = q.list();
+//		List<Concert> concerts = q.list();
+		List<Concert> concerts = (List<Concert>) concertRepository.findAll();
 		Assert.assertTrue(concerts.size() == 1);
 		Assert.assertTrue(concerts.get(0).getArtists().contains(am));
 	}
