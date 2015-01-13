@@ -7,17 +7,24 @@ import org.mosh.model.entity.Concert;
 import org.mosh.model.entity.Location;
 import org.mosh.model.entity.repository.ConcertRepository;
 import org.mosh.service.ConcertsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ConcertsServiceImpl implements ConcertsService {
 
+	final Logger logger = LoggerFactory.getLogger(ConcertsServiceImpl.class);
+
 	@Autowired
 	ConcertRepository concertRepository;
 	
 	public List<Concert> getAllConcerts(){
-		return concertRepository.findAll();
+		
+		List<Concert> concerts =concertRepository.findAll();
+		logger.info("Concerts found {}", concerts.size());
+		return concerts;
 	}
 
 	public Concert getConcertsByDate() {
