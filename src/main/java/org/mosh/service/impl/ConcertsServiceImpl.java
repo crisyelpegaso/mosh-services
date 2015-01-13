@@ -21,9 +21,7 @@ public class ConcertsServiceImpl implements ConcertsService {
 	ConcertRepository concertRepository;
 	
 	public List<Concert> getAllConcerts(){
-		List<Concert> concerts =concertRepository.findAll();
-		logger.info("Concerts found {}", concerts.size());
-		return concerts;
+		return concertRepository.findAll();
 	}
 
 	public Concert getConcertsByDate() {

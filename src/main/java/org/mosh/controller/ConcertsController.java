@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -17,9 +18,14 @@ public class ConcertsController {
 	@Autowired
 	ConcertsService concertsService;
 	
-	@RequestMapping(value="/all", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<Concert> getConcerts(){
 		return concertsService.getAllConcerts();
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, params="name")
+	public @ResponseBody List<Concert> getConcertsByName(@RequestParam(value = "name", required = true) String name){
+		return concertsService.getConcertsByName(name);
 	}
 
 }
