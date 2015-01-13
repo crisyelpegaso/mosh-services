@@ -2,9 +2,14 @@ package org.mosh.integration;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import junit.framework.Assert;
 
 import org.joda.time.LocalDateTime;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mosh.model.entity.Artist;
@@ -35,7 +40,10 @@ public class PersistenceTest {
 	ConcertRepository concertRepository;
 	
 	@Test
+	@Ignore
 	public void testSessionSave() {
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("JavaStackOver");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		
 //		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -91,5 +99,7 @@ public class PersistenceTest {
 		Assert.assertTrue(concerts.size() == 1);
 		Assert.assertTrue(concerts.get(0).getArtists().contains(am));
 	}
+	
+	
 
 }
