@@ -21,7 +21,6 @@ public class ConcertsServiceImpl implements ConcertsService {
 	ConcertRepository concertRepository;
 	
 	public List<Concert> getAllConcerts(){
-		
 		List<Concert> concerts =concertRepository.findAll();
 		logger.info("Concerts found {}", concerts.size());
 		return concerts;
@@ -43,8 +42,7 @@ public class ConcertsServiceImpl implements ConcertsService {
 	}
 
 	public List<Concert> getConcertsByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return concertRepository.findByName(name);
 	}
 
 	public List<Concert> getConcertsByLocation(Location location) {

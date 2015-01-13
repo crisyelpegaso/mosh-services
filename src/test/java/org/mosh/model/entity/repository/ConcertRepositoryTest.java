@@ -19,5 +19,10 @@ public class ConcertRepositoryTest {
 		Assert.assertNotNull(concertRepository);
 	}
 	
+	@Test
+	public void saveConcert(){
+		
+	}
+	
 	
 }

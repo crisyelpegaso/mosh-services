@@ -13,6 +13,7 @@ Location
 -Address
 -Name
 -Type (ENUM)
+-City
 
 LocationType (ENUM)
 -STADIUM

@@ -40,14 +40,7 @@ public class PersistenceTest {
 	ConcertRepository concertRepository;
 	
 	@Test
-	@Ignore
 	public void testSessionSave() {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("JavaStackOver");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		
-		
-//		Session session = HibernateUtil.getSessionFactory().openSession();
-//		session.beginTransaction();
 
 		// Create main artists
 		Artist am = new Artist("ArcticMonkeys", CountryEnum.ENGLAND, new LocalDateTime(), false);

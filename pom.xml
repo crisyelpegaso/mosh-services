@@ -106,37 +106,32 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>1.7.1.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-dbcp</artifactId>
-			<version>7.0.55</version>
-		</dependency>
 
-<!-- Logging -->
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>jcl-over-slf4j</artifactId>
-    <version>1.5.8</version>
-    <scope>runtime</scope>
-</dependency>
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-api</artifactId>
-    <version>1.5.8</version>
-    <scope>runtime</scope>
-</dependency>
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-log4j12</artifactId>
-    <version>1.5.8</version>
-    <scope>runtime</scope>
-</dependency>
- <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.8</version>
-            <scope>runtime</scope>
-        </dependency>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.5.8</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.8</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.8</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.8</version>
+			<scope>runtime</scope>
+		</dependency>
 
 		<!-- Test dependencies -->
 		<dependency>

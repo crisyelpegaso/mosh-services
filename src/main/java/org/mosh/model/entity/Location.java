@@ -24,6 +24,8 @@ public class Location {
 	@Enumerated(EnumType.STRING)
 	private LocationTypeEnum type;
 	
+	private String name;
+	
 	public String getCity() {
 		return city;
 	}
@@ -41,6 +43,12 @@ public class Location {
 	}
 	public void setType(LocationTypeEnum type) {
 		this.type = type;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

@@ -3,7 +3,6 @@ package org.mosh.model.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -13,6 +12,8 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Concert {
@@ -30,8 +31,9 @@ public class Concert {
 	@OneToOne
 	private Location location;
 	
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany
 	@NotEmpty
+	@JsonIgnore
 	private List<Artist> artists;
 	
 	public Long getId() {
