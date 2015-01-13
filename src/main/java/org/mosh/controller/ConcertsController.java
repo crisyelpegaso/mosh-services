@@ -7,6 +7,7 @@ import org.mosh.service.ConcertsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,7 +18,7 @@ public class ConcertsController {
 	ConcertsService concertsService;
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
-	public List<Concert> getConcerts(){
+	public @ResponseBody List<Concert> getConcerts(){
 		return concertsService.getAllConcerts();
 	}
 
