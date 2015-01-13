@@ -21,7 +21,6 @@ import org.mosh.model.enums.CountryEnum;
 import com.google.common.collect.Lists;
 
 @Entity
-@Table
 public class Artist {
 	
 	@Id
