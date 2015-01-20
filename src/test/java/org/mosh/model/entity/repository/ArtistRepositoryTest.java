@@ -1,7 +1,5 @@
 package org.mosh.model.entity.repository;
 
-import java.util.List;
-
 import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,8 +27,8 @@ public class ArtistRepositoryTest {
 		Artist am = new Artist("ArcticMonkeys", CountryEnum.ENGLAND, new LocalDateTime(), false);
 		am.setArtistsRelated(null);
 		am = artistRepository.save(am);
-		List<Artist> artistsSaved = artistRepository.findByName("ArcticMonkeys");
-		Assert.assertTrue(!artistsSaved.isEmpty());
-		Assert.assertTrue(artistsSaved.get(0).equals(am));
+		Artist artistSaved = artistRepository.findByName("ArcticMonkeys");
+		Assert.assertNotNull(artistSaved);
+		Assert.assertTrue(artistSaved.equals(am));
 	}
 }

@@ -1,7 +1,11 @@
 package org.mosh.controller;
 
+import java.util.List;
+
 import org.mosh.model.entity.Artist;
+import org.mosh.model.entity.Concert;
 import org.mosh.service.ArtistService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/artists")
 public class ArtistController {
 
+	@Autowired
 	ArtistService artistService;
 	
 	@RequestMapping(method=RequestMethod.GET, params="name")

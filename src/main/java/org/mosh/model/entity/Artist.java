@@ -13,9 +13,11 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
 import org.mosh.model.enums.CountryEnum;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 
 @Entity
@@ -38,7 +40,9 @@ public class Artist {
 	
 	private boolean isSoloist;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany
+	@NotEmpty
+	@JsonIgnore
 	private List<Artist> artistsRelated = Lists.newArrayList();
 	
 	public Artist(){

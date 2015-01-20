@@ -4,7 +4,9 @@ import org.mosh.model.entity.Artist;
 import org.mosh.model.entity.repository.ArtistRepository;
 import org.mosh.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ArtistServiceImpl implements ArtistService {
 
 	@Autowired
