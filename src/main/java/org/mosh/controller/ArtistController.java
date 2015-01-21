@@ -1,9 +1,6 @@
 package org.mosh.controller;
 
-import java.util.List;
-
 import org.mosh.model.entity.Artist;
-import org.mosh.model.entity.Concert;
 import org.mosh.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

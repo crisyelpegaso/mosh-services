@@ -12,8 +12,12 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
+import org.mosh.deserializer.CustomDateJsonDateDeserializer;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 public class Concert {
@@ -48,6 +52,8 @@ public class Concert {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@JsonSerialize(using=CustomDateJsonDateDeserializer.class)
 	public LocalDateTime getDate() {
 		return date;
 	}
