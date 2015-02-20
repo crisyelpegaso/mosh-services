@@ -16,4 +16,6 @@ public interface ConcertsService {
 	
 	public List<Concert> getConcertsByLocation(Location location);
 	
+	public List<Concert> getConcertsByParamName(String paramName);
+	
 }

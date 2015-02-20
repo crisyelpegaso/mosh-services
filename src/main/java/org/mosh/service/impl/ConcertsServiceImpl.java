@@ -47,4 +47,8 @@ public class ConcertsServiceImpl implements ConcertsService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public List<Concert> getConcertsByParamName(String paramName) {
+		return concertRepository.findByParamName(paramName);
+	}
 }

@@ -25,7 +25,7 @@ public class ConcertsController {
 	
 	@RequestMapping(method=RequestMethod.GET, params="name")
 	public @ResponseBody List<Concert> getConcertsByName(@RequestParam(value = "name", required = true) String name){
-		return concertsService.getConcertsByName(name);
+		return concertsService.getConcertsByParamName(name);
 	}
 
 }

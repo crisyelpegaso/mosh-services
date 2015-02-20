@@ -5,8 +5,15 @@
 <body>
 <div>
 	<h1>API REFERENCE</h1>
-	<div>GET /concerts</div>
-	<div> GET /concerts?name= </div>
+	<div>
+		<div>GET /concerts</div>
+		<div>Returns all concerts found from the current date</div>
+	</div>
+	<div>
+		<div> GET /concerts?name= </div>
+		<div> Returns all concerts with name given as parameter, and all concerts from artists with the same name given as parameter</div>
+	</div>
+	
 	<div>GET /concerts?date= </div>
 	<div>GET /concerts?location= </div>
 	<div>GET	/concerts?artists= </div>

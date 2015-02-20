@@ -2,10 +2,14 @@ package org.mosh.model.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
@@ -14,9 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
 import org.mosh.deserializer.CustomDateJsonDateDeserializer;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
@@ -35,9 +37,13 @@ public class Concert {
 	@OneToOne
 	private Location location;
 	
-	@OneToMany
 	@NotEmpty
 	@JsonIgnore
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+		      name="Concert_Artist",
+		      joinColumns={@JoinColumn(name="Artist_id", referencedColumnName="id")},
+		      inverseJoinColumns={@JoinColumn(name="Concert_id", referencedColumnName="ID")})
 	private List<Artist> artists;
 	
 	public Long getId() {

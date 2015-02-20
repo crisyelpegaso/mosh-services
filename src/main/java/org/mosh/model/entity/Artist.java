@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
@@ -40,8 +41,12 @@ public class Artist {
 	
 	private boolean isSoloist;
 	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "artists")
+	@JsonIgnore
+	private List<Concert> concerts = Lists.newArrayList();
+	
 	@ManyToMany
-	@NotEmpty
+//	@NotEmpty
 	@JsonIgnore
 	private List<Artist> artistsRelated = Lists.newArrayList();
 	
@@ -87,6 +92,13 @@ public class Artist {
 		this.artistsRelated = artistsRelated;
 	}
 
+	public List<Concert> getConcerts() {
+		return concerts;
+	}
+
+	public void setConcerts(List<Concert> concerts) {
+		this.concerts = concerts;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
