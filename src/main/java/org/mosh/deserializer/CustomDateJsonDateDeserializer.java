@@ -1,8 +1,6 @@
 package org.mosh.deserializer;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;

@@ -16,9 +16,11 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
+import org.mosh.deserializer.CustomDateJsonDateDeserializer;
 import org.mosh.model.enums.CountryEnum;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.common.collect.Lists;
 
 @Entity
@@ -73,6 +75,7 @@ public class Artist {
 	public void setCountry(CountryEnum country) {
 		this.country = country;
 	}
+	@JsonSerialize(using=CustomDateJsonDateDeserializer.class)
 	public LocalDateTime getStartDate() {
 		return startDate;
 	}

@@ -1,5 +1,7 @@
 package org.mosh.controller;
 
+import java.util.List;
+
 import org.mosh.model.entity.Artist;
 import org.mosh.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,11 @@ public class ArtistController {
 
 	@Autowired
 	ArtistService artistService;
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public @ResponseBody List<Artist> getConcerts(){
+		return artistService.getAllArtists();
+	}
 	
 	@RequestMapping(method=RequestMethod.GET, params="name")
 	public @ResponseBody Artist getConcertsByName(@RequestParam(value = "name", required = true) String name){
