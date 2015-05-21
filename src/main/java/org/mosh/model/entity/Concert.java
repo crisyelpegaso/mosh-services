@@ -39,11 +39,11 @@ public class Concert {
 	
 	@NotEmpty
 	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	@JoinTable(
 		      name="Concert_Artist",
-		      joinColumns={@JoinColumn(name="Artist_id", referencedColumnName="id")},
-		      inverseJoinColumns={@JoinColumn(name="Concert_id", referencedColumnName="ID")})
+		      joinColumns={@JoinColumn(name="Concert_id", referencedColumnName="id")},
+		      inverseJoinColumns={@JoinColumn(name="Artist_id", referencedColumnName="ID")})
 	private List<Artist> artists;
 	
 	public Long getId() {

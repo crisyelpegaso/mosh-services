@@ -2,6 +2,7 @@ package org.mosh.model.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -47,7 +48,7 @@ public class Artist {
 	@JsonIgnore
 	private List<Concert> concerts = Lists.newArrayList();
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.DETACH)
 //	@NotEmpty
 	@JsonIgnore
 	private List<Artist> artistsRelated = Lists.newArrayList();

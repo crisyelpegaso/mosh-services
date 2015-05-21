@@ -48,13 +48,21 @@ public class PersistenceTest {
 				new LocalDateTime(), false);
 		Artist spoon = new Artist("Spoon",CountryEnum.ENGLAND,
 				new LocalDateTime(), false);
+		
+		//Save concert's artist
+		artistRepository.save(am);
 
 		// Save Kasabian and Spoon
+		am = artistRepository.findByName("ArcticMonkeys");
 		List<Artist> artistsRelatedTo = Lists.newArrayList();
 		artistsRelatedTo.add(am);
 		
 		kasabian.setArtistsRelated(artistsRelatedTo);
 		artistRepository.save(kasabian);
+		
+		artistsRelatedTo.clear();
+		am = artistRepository.findByName("ArcticMonkeys");
+		artistsRelatedTo.add(am);
 		spoon.setArtistsRelated(artistsRelatedTo);
 		artistRepository.save(spoon);
 		
@@ -63,7 +71,9 @@ public class PersistenceTest {
 		location.setCity("Buenos Aires");
 		location.setCountry(CountryEnum.ARGENTINA);
 		location.setType(LocationTypeEnum.STADIUM);
+		location.setName("River Plate");
 		locationRepository.save(location);
+		
 		
 		Concert concert = new Concert();
 		List<Artist> artistsPlaying = Lists.newArrayList();
@@ -72,24 +82,21 @@ public class PersistenceTest {
 		concert.setDate(new LocalDateTime());
 		concert.setName("Personal Fest");
 		concert.setLocation(location);
+		concert.setArtists(artistsPlaying);
 		
 		// Set am related artists
 		List<Artist> artists = Lists.newArrayList();
 		artists.add(kasabian);
 		artists.add(spoon);
 		am.setArtistsRelated(artists);
-		
-		// Save modified objects
-		artistRepository.save(am);
+
+		//Save am concert
 		concertRepository.save(concert);
-//		session.getTransaction().commit();
 
-		// Retrieve am concert
-//		Query q = session.createQuery("From Concert");
-
-//		List<Concert> concerts = q.list();
 		List<Concert> concerts = (List<Concert>) concertRepository.findAll();
-		Assert.assertTrue(concerts.size() == 1);
+		Assert.assertTrue(concerts.size() > 0);
+		Assert.assertNotNull(concerts.get(0).getArtists());
+		Assert.assertTrue(concerts.get(0).getArtists().size() > 0);
 		Assert.assertTrue(concerts.get(0).getArtists().contains(am));
 	}
 	
